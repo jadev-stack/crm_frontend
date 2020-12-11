@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Home } from "./screens/Home";
+import { Maestra } from "./screens/Maestra";
+import { Cargas } from "./screens/Cargas";
+import { Saldos } from "./screens/Saldos";
+import { Users } from "./screens/Users";
+import { Login } from "./screens/Login";
 
 function App() {
+  const [token, setToken] = useState();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Login token={setToken} />
+          </Route>
+          <Route exact path="/home">
+            <Home token={token} />
+          </Route>
+          <Route path="/users">
+            <Users token={token} />
+          </Route>
+          <Route path="/maestra">
+            <Maestra token={token} />
+          </Route>
+          <Route path="/cargas">
+            <Cargas token={token} />
+          </Route>
+          <Route path="/saldos">
+            <Saldos token={token} />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
