@@ -20,7 +20,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const BaseCard = ({ setState, setId, setItems }) => {
+export const BaseCard = ({ setState, setItems, setRcarga }) => {
   const classes = useStyles();
   const [list, setList] = useState([]);
   const [open, setOpen] = useState(false);
@@ -40,6 +40,7 @@ export const BaseCard = ({ setState, setId, setItems }) => {
         setOpen={setOpen}
         handleClose={handleClose}
         setState={setState}
+        setRcarga={setRcarga}
       />
       <Card className={classes.card}>
         <CardHeader
@@ -59,9 +60,9 @@ export const BaseCard = ({ setState, setId, setItems }) => {
         <CardContent>
           <TableList
             list={list}
-            setId={setId}
             setItems={setItems}
             setState={setState}
+            setRcarga={setRcarga}
           />
         </CardContent>
       </Card>

@@ -5,6 +5,9 @@ import {
   CardContent,
   IconButton,
   makeStyles,
+  Typography,
+  CardActions,
+  Button,
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import { TableItems } from "./TableItems";
@@ -16,9 +19,13 @@ const useStyles = makeStyles({
   button: {
     color: "#00acee",
   },
+  btfooter: {
+    justifyContent: "flex-end",
+    color: "#00acee",
+  },
 });
 
-export const BaseCard = ({ setState, id, items, setItems }) => {
+export const BaseCard = ({ items, setItems, rcarga, setRcarga, setState }) => {
   const classes = useStyles();
 
   const [open, setOpen] = useState(false);
@@ -32,12 +39,20 @@ export const BaseCard = ({ setState, id, items, setItems }) => {
       <ModalItems
         handleClose={handleClose}
         open={open}
-        id={id}
+        rcarga={rcarga}
+        setRcarga={setRcarga}
         setItems={setItems}
       />
       <Card className={classes.card}>
         <CardHeader
-          title="Items Relación de Carga"
+          title={
+            <Typography variant="h5">
+              Relacion de Carga #: {rcarga.numero}
+            </Typography>
+          }
+          subheader={
+            <Typography variant="h6">Total: {rcarga.total}</Typography>
+          }
           action={
             <IconButton
               className={classes.button}
@@ -51,8 +66,23 @@ export const BaseCard = ({ setState, id, items, setItems }) => {
           }
         ></CardHeader>
         <CardContent>
-          <TableItems id={id} items={items} />
+          <TableItems setRcarga={setRcarga} items={items} setItems={setItems} />
         </CardContent>
+        <CardActions className={classes.btfooter}>
+          <CardContent>
+            <Button
+              variant="contained"
+              size="small"
+              style={{ backgroundColor: "#00acee", color: "white" }}
+              onClick={() => {
+                console.log("Hola");
+                setState(1);
+              }}
+            >
+              Generar
+            </Button>
+          </CardContent>
+        </CardActions>
       </Card>
     </Fragment>
   );

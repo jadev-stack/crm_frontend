@@ -11,7 +11,7 @@ import { Ruta } from "./Ruta";
 import { fetchDivision, fetchRutas } from "../Utils/Crm";
 import { fectRcargaPost } from "../Utils/Rcarga";
 
-export const ModalRcarga = ({ handleClose, open, setState }) => {
+export const ModalRcarga = ({ handleClose, open, setState, setRcarga }) => {
   const [ruta, setRuta] = useState(1);
   const [rutas, setRutas] = useState("");
   const [division, setDivision] = useState("");
@@ -43,7 +43,7 @@ export const ModalRcarga = ({ handleClose, open, setState }) => {
         </Button>
         <Button
           onClick={() => {
-            fectRcargaPost(ruta, selectDiv, setState);
+            fectRcargaPost(ruta, selectDiv, setState, setRcarga);
           }}
           color="primary"
           autoFocus

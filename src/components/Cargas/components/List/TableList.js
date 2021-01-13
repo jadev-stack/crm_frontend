@@ -15,13 +15,15 @@ import moment from "moment";
 import { Edit } from "@material-ui/icons";
 import { Estatus } from "./Estatus";
 import { fetchRcargaItem } from "../Utils/Items";
+import { fetchRcarga } from "../Utils/Rcarga";
+
 const useStyles = makeStyles({
   head: {
     backgroundColor: "#999999",
   },
 });
 
-export const TableList = ({ list, setId, setItems, setState }) => {
+export const TableList = ({ list, setItems, setState, setRcarga }) => {
   const classes = useStyles();
 
   return (
@@ -76,7 +78,7 @@ export const TableList = ({ list, setId, setItems, setState }) => {
                   href="#"
                   onClick={(e) => {
                     e.preventDefault();
-                    setId(row.id);
+                    fetchRcarga(row.id, setRcarga);
                     fetchRcargaItem(row.id, setItems, setState);
                   }}
                 >

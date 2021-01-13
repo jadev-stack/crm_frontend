@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import DeleteIcon from "@material-ui/icons/Delete";
+import { fetchDeleteItem } from "../Utils/Items";
 
 const useStyles = makeStyles({
   bullet: {
@@ -25,7 +26,7 @@ const useStyles = makeStyles({
     marginBottom: 12,
   },
 });
-export const TableItems = ({ items }) => {
+export const TableItems = ({ setRcarga, items, setItems }) => {
   const classes = useStyles();
 
   return (
@@ -47,7 +48,7 @@ export const TableItems = ({ items }) => {
               <TableCell component="th" scope="row">
                 {row.docnum}
               </TableCell>
-              <TableCell align="center">{row.cardname}</TableCell>
+              <TableCell align="left">{row.cardname}</TableCell>
               <TableCell align="center">{row.unidad}</TableCell>
               <TableCell align="center">{row.cajas}</TableCell>
               <TableCell align="center">{row.totalvalor}</TableCell>
@@ -56,6 +57,7 @@ export const TableItems = ({ items }) => {
                   href="#"
                   onClick={(e) => {
                     e.preventDefault();
+                    fetchDeleteItem(row.id, row.rcarga_id, setItems, setRcarga);
                   }}
                 >
                   <DeleteIcon color="error" />

@@ -13,6 +13,7 @@ import {
   Select,
 } from "@material-ui/core";
 import { fectRcargaItemValues } from "../Utils/Items";
+
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
@@ -23,7 +24,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const ModalItems = ({ open, handleClose, id, setItems }) => {
+export const ModalItems = ({
+  open,
+  handleClose,
+  rcarga,
+  setItems,
+  setRcarga,
+}) => {
   const classes = useStyles();
   const [sistema, setSistema] = useState("");
   const [invoice, setInvoice] = useState("");
@@ -82,7 +89,13 @@ export const ModalItems = ({ open, handleClose, id, setItems }) => {
           <Button
             onClick={() => {
               handleClose();
-              fectRcargaItemValues(sistema, invoice, id, setItems);
+              fectRcargaItemValues(
+                sistema,
+                invoice,
+                rcarga.id,
+                setItems,
+                setRcarga
+              );
             }}
             color="primary"
             autoFocus

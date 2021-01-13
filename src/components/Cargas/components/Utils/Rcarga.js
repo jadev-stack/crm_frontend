@@ -1,5 +1,5 @@
 const API = process.env.REACT_APP_API;
-export const fectRcargaPost = async (ruta, selectDiv, setState) => {
+export const fectRcargaPost = async (ruta, selectDiv, setState, setRcarga) => {
   const res = await fetch(`${API}api/rcarga`, {
     method: "POST",
     headers: {
@@ -16,6 +16,14 @@ export const fectRcargaPost = async (ruta, selectDiv, setState) => {
     }),
   });
   if (res.ok === true) {
+    const data = await res.json();
+    setRcarga(data);
     setState(2);
   }
+};
+
+export const fetchRcarga = async (id, setRcarga) => {
+  const res = await fetch(`${API}api/rcarga/${id}`);
+  const data = await res.json();
+  setRcarga(data);
 };
