@@ -1,10 +1,11 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-
-import Select from "@material-ui/core/Select";
+import {
+  makeStyles,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -15,12 +16,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
 }));
-
-export const DivisRcarga = ({ divis, setDiv, div }) => {
+export const Division = ({ division, selectDivi, setSelectDiv }) => {
   const classes = useStyles();
-
   const handleChange = (event) => {
-    setDiv(event.target.value);
+    setSelectDiv(event.target.value);
   };
   return (
     <div>
@@ -29,14 +28,12 @@ export const DivisRcarga = ({ divis, setDiv, div }) => {
         <Select
           labelId="label-div"
           id="Division"
-          value={div}
+          value={selectDivi}
           onChange={handleChange}
           label="Division"
+          defaultValue={""}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          {divis.map((row) => (
+          {division.map((row) => (
             <MenuItem value={row.id} key={row.id}>
               {row.name}
             </MenuItem>

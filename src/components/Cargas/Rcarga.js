@@ -1,20 +1,28 @@
 import React, { useState } from "react";
-import { RcargaList } from "./screens/RcargaList";
-import { RcargaItem } from "./screens/RcargaItem";
+import { BaseCard } from "./components/List/BaseCard";
+import { Items } from "./components/Items/Items";
+
 export const Rcarga = () => {
   const [state, setState] = useState(1);
-  const [rcargaid, setId] = useState();
+  const [id, setId] = useState();
+  const [items, setItems] = useState([]);
 
   let component = null;
   switch (state) {
     case 1:
-      component = <RcargaList setState={setState} setId={setId} />;
+      component = (
+        <BaseCard setState={setState} setId={setId} setItems={setItems} />
+      );
       break;
     case 2:
-      component = <RcargaItem setState={setState} rcargaid={rcargaid} />;
+      component = (
+        <Items setState={setState} id={id} items={items} setItems={setItems} />
+      );
       break;
     default:
-      component = <RcargaList setState={setState} setId={setId} />;
+      component = (
+        <BaseCard setState={setState} setId={setId} setItems={setItems} />
+      );
   }
   return <div>{component}</div>;
 };
