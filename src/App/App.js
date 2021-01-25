@@ -1,12 +1,12 @@
 import "./App.css";
 import { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Home } from "./screens/Home";
-import { Maestra } from "./screens/Maestra";
-import { Cargas } from "./screens/Cargas";
-import { Saldos } from "./screens/Saldos";
-import { Users } from "./screens/Users";
-import { Login } from "./screens/Login";
+import { Home } from "../screens/Home";
+import { Maestra } from "../screens/Maestra";
+import { Cargas } from "../screens/Cargas";
+import { Saldos } from "../screens/Saldos";
+import { Users } from "../screens/Users";
+import { Login } from "../screens/Login";
 
 function App() {
   const [token, setToken] = useState();
