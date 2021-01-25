@@ -27,3 +27,9 @@ export const fetchRcarga = async (id, setRcarga) => {
   const data = await res.json();
   setRcarga(data);
 };
+
+export const fetchRcargaUpdate = async (id, estatus) => {
+  await fetch(`${API}api/rcarga_update/${id}/${estatus}`, {
+    method: "PUT",
+  });
+};

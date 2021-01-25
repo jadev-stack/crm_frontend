@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#00acee",
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
+    width: "100%",
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -72,8 +72,10 @@ export const FormLogin = ({ token }) => {
     });
 
     if (res.ok === true) {
-      const ptoken = await res.json();
-      token = ptoken["access_token"];
+      const user = await res.json();
+
+      localStorage.setItem("user", JSON.stringify(user));
+
       history.push("/home");
     } else {
       setPassword("");

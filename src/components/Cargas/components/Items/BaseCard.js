@@ -12,6 +12,7 @@ import {
 import AddIcon from "@material-ui/icons/Add";
 import { TableItems } from "./TableItems";
 import { ModalItems } from "./ModalItems";
+import { fetchRcargaUpdate } from "../Utils/Rcarga";
 const useStyles = makeStyles({
   card: {
     margin: "50px",
@@ -75,7 +76,9 @@ export const BaseCard = ({ items, setItems, rcarga, setRcarga, setState }) => {
               size="small"
               style={{ backgroundColor: "#00acee", color: "white" }}
               onClick={() => {
-                console.log("Hola");
+                let estatus = 2;
+                fetchRcargaUpdate(rcarga.id, estatus);
+                setItems([]);
                 setState(1);
               }}
             >
