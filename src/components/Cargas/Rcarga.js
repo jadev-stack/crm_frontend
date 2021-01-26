@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import { BaseCard } from "./components/List/BaseCard";
 import { Items } from "./components/Items/Items";
+import { Almacen } from "./components/Almacen/Almacen";
 
 export const Rcarga = () => {
   const [state, setState] = useState(1);
   const [items, setItems] = useState([]);
   const [rcarga, setRcarga] = useState({});
-
+  const user = localStorage.getItem("user");
   let component = null;
+
+  if (user.usergroup === "3") {
+    setState(3);
+  }
+
   switch (state) {
     case 1:
       component = (
@@ -28,6 +34,9 @@ export const Rcarga = () => {
           setRcarga={setRcarga}
         />
       );
+      break;
+    case 3:
+      component = <Almacen />;
       break;
     default:
       component = (

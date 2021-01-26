@@ -10,27 +10,30 @@ import { Login } from "../screens/Login";
 
 function App() {
   const [token, setToken] = useState();
+  if (!token) {
+    return <Login setToken={setToken} />;
+  }
   return (
     <div>
       <Router>
         <Switch>
           <Route exact path="/">
-            <Login token={setToken} />
+            <Login />
           </Route>
           <Route exact path="/home">
-            <Home token={token} />
+            <Home />
           </Route>
           <Route path="/users">
-            <Users token={token} />
+            <Users />
           </Route>
           <Route path="/maestra">
-            <Maestra token={token} />
+            <Maestra />
           </Route>
           <Route path="/cargas">
-            <Cargas token={token} />
+            <Cargas />
           </Route>
           <Route path="/saldos">
-            <Saldos token={token} />
+            <Saldos />
           </Route>
         </Switch>
       </Router>
