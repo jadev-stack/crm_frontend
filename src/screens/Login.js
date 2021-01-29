@@ -1,9 +1,9 @@
 import React from "react";
 import { FormLogin } from "../components/Login/FormLogin";
-export const Login = ({ token }) => {
+export const Login = ({ setToken }) => {
   return (
     <div>
-      <FormLogin token={token} />
+      <FormLogin setToken={setToken} />
     </div>
   );
 };

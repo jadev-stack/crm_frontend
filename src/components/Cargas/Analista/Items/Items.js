@@ -1,5 +1,5 @@
 import React from "react";
-import { BaseCard } from "./BaseCard";
+import { BaseCard } from "../Items/BaseCard";
 export const Items = ({ items, setItems, rcarga, setRcarga, setState }) => {
   return (
     <div>

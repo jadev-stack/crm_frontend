@@ -18,8 +18,14 @@ export const ModalRcarga = ({ handleClose, open, setState, setRcarga }) => {
   const [selectDiv, setSelectDiv] = useState(1);
 
   useEffect(() => {
-    fetchRutas(setRutas);
-    fetchDivision(setDivision);
+    let isMounted = true;
+    if (isMounted) {
+      fetchRutas(setRutas);
+      fetchDivision(setDivision);
+    }
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (

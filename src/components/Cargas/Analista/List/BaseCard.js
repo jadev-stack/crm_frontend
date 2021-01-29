@@ -26,7 +26,13 @@ export const BaseCard = ({ setState, setItems, setRcarga }) => {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    fetchListRcarga(setList);
+    let isMounted = true;
+    if (isMounted) {
+      fetchListRcarga(setList);
+    }
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const handleClose = () => {
