@@ -16,10 +16,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
 }));
-export const Ayudante = ({ ayudante }) => {
+export const Ayudante = ({ ayudante, setAyudanteS }) => {
   const classes = useStyles();
   const handleChange = (event) => {
-    console.log(event.target.value);
+    setAyudanteS(event.target.value);
   };
   return (
     <div>
@@ -33,7 +33,7 @@ export const Ayudante = ({ ayudante }) => {
           defaultValue={""}
         >
           {ayudante.map((row) => (
-            <MenuItem value={row.id} key={row.id}>
+            <MenuItem value={row.nombre} key={row.id}>
               {row.nombre}
             </MenuItem>
           ))}

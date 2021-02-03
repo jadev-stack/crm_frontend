@@ -3,6 +3,7 @@ import { Card, CardHeader, CardContent, makeStyles } from "@material-ui/core";
 import { TableList } from "./List/TableList";
 import { fetchListDespacho } from "./Utils/Despacho";
 import { ModalDespacho } from "./List/ModalDespacho";
+
 const useStyles = makeStyles({
   card: {
     margin: "50px",
@@ -15,6 +16,7 @@ const useStyles = makeStyles({
 export const Almacen = () => {
   const classes = useStyles();
   const [despacho, setDespacho] = useState([]);
+  const [id, setId] = useState();
 
   useEffect(() => {
     fetchListDespacho(setDespacho);
@@ -28,11 +30,16 @@ export const Almacen = () => {
 
   return (
     <Fragment>
-      <ModalDespacho handleClose={handleClose} open={open} />
+      <ModalDespacho
+        handleClose={handleClose}
+        open={open}
+        id={id}
+        setDespacho={setDespacho}
+      />
       <Card className={classes.card}>
         <CardHeader title="Relación de Carga"></CardHeader>
         <CardContent>
-          <TableList despacho={despacho} setOpen={setOpen} />
+          <TableList despacho={despacho} setOpen={setOpen} setId={setId} />
         </CardContent>
       </Card>
     </Fragment>

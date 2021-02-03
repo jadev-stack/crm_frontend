@@ -21,7 +21,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const TableList = ({ despacho, setOpen }) => {
+export const TableList = ({ despacho, setOpen, setId }) => {
   const classes = useStyles();
 
   return (
@@ -85,6 +85,7 @@ export const TableList = ({ despacho, setOpen }) => {
                   onClick={(e) => {
                     e.preventDefault();
                     setOpen(true);
+                    setId(row.id);
                   }}
                 >
                   <Edit color="action" />

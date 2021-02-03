@@ -16,10 +16,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
 }));
-export const Chofer = ({ chofer }) => {
+export const Chofer = ({ chofer, setChoferS }) => {
   const classes = useStyles();
   const handleChange = (event) => {
-    console.log(event.target.value);
+    setChoferS(event.target.value);
   };
   return (
     <div>
@@ -33,7 +33,7 @@ export const Chofer = ({ chofer }) => {
           defaultValue={""}
         >
           {chofer.map((row) => (
-            <MenuItem value={row.id} key={row.id}>
+            <MenuItem value={row.nombre} key={row.id}>
               {row.nombre}
             </MenuItem>
           ))}

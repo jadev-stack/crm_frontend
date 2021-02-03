@@ -16,10 +16,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
 }));
-export const Vehiculo = ({ placa }) => {
+export const Vehiculo = ({ placa, setPlacaS }) => {
   const classes = useStyles();
   const handleChange = (event) => {
-    console.log(event.target.value);
+    setPlacaS(event.target.value);
   };
   return (
     <div>
