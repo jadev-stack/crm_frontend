@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 import {
   Table,
@@ -13,15 +13,16 @@ import {
 } from "@material-ui/core";
 
 import moment from "moment";
-import { Edit } from "@material-ui/icons";
-import { Estatus } from "../Estatus";
+import { AssignmentInd, Feedback } from "@material-ui/icons";
+import { Estatus } from "../../Estatus";
+import { fetchListLiqui } from "../Utils/Liquidacion";
 const useStyles = makeStyles({
   head: {
     backgroundColor: "#999999",
   },
 });
 
-export const TableList = ({ despacho, setOpen, setId }) => {
+export const TableList = ({ despacho, setOpen, setId, setState, setItems }) => {
   const classes = useStyles();
 
   return (
@@ -80,16 +81,41 @@ export const TableList = ({ despacho, setOpen, setId }) => {
                 <Estatus estatus={row.estatus} />
               </TableCell>
               <TableCell align="center">
-                <Link
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setOpen(true);
-                    setId(row.id);
-                  }}
-                >
-                  <Edit color="action" />
-                </Link>
+                {row.estatus === "PREDESPACHO" ? (
+                  <Link
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setOpen(true);
+                      setId(row.id);
+                    }}
+                  >
+                    <AssignmentInd color="action" />
+                  </Link>
+                ) : (
+                  <Fragment>
+                    <Link
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setOpen(true);
+                        setId(row.id);
+                      }}
+                    >
+                      <AssignmentInd color="action" />
+                    </Link>
+                    <Link
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        fetchListLiqui(row.id, setItems);
+                        setState(2);
+                      }}
+                    >
+                      <Feedback color="action" />
+                    </Link>
+                  </Fragment>
+                )}
               </TableCell>
             </TableRow>
           ))}

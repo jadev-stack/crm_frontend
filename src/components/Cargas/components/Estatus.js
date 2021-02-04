@@ -13,8 +13,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   abierto: {
-    backgroundColor: "gray",
-    borderColor: "gray",
+    backgroundColor: "#b40d39",
+    borderColor: "#b40d39",
   },
   predespacho: {
     backgroundColor: "#00acee",
@@ -36,7 +36,7 @@ export const Estatus = ({ estatus }) => {
       <Chip
         label={estatus}
         className={
-          estatus === "ABIERTO"
+          estatus === "ABIERTA"
             ? classes.abierto
             : estatus === "PREDESPACHO"
             ? classes.predespacho

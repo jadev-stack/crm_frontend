@@ -13,7 +13,7 @@ import {
 
 import moment from "moment";
 import { Edit } from "@material-ui/icons";
-import { Estatus } from "./Estatus";
+import { Estatus } from "../../Estatus";
 import { fetchRcargaItem } from "../Utils/Items";
 import { fetchRcarga } from "../Utils/Rcarga";
 

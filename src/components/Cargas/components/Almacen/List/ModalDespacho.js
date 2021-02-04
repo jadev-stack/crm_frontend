@@ -14,9 +14,9 @@ import {
   fetchDespachoValues,
 } from "../Utils/Despacho";
 
-import { Chofer } from "../Items/Chofer";
-import { Ayudante } from "../Items/Ayudante";
-import { Vehiculo } from "../Items/Vehiculo";
+import { Chofer } from "./Chofer";
+import { Ayudante } from "./Ayudante";
+import { Vehiculo } from "./Vehiculo";
 
 export const ModalDespacho = ({ handleClose, open, id, setDespacho }) => {
   const [chofer, setChofer] = useState("");
