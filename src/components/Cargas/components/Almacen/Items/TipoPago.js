@@ -46,9 +46,9 @@ export const TipoPago = ({
           defaultValue={""}
         >
           <MenuItem value={"Credito"}>Credito</MenuItem>
+          <MenuItem value={"Efectivo MD"}>Efectivo MD</MenuItem>
           <MenuItem value={"Transferencia Bs"}>Transferencia Bs</MenuItem>
           <MenuItem value={"Transferencia MD"}>Transferencia MD</MenuItem>
-          <MenuItem value={"Efectivo MD"}>Efectivo MD</MenuItem>
           <MenuItem value={"Zelle"}>Zelle</MenuItem>
         </Select>
         <TextField

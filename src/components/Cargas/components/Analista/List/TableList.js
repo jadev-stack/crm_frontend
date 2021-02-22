@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import {
   Table,
   TableBody,
@@ -12,10 +12,10 @@ import {
 } from "@material-ui/core";
 
 import moment from "moment";
-import { Edit } from "@material-ui/icons";
+import { Edit, PictureAsPdf, CheckCircle } from "@material-ui/icons";
 import { Estatus } from "../../Estatus";
 import { fetchRcargaItem } from "../Utils/Items";
-import { fetchRcarga } from "../Utils/Rcarga";
+import { fetchRcarga, fetchRcargaUpdate2 } from "../Utils/Rcarga";
 
 const useStyles = makeStyles({
   head: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const TableList = ({ list, setItems, setState, setRcarga }) => {
+export const TableList = ({ list, setItems, setState, setList, setRcarga }) => {
   const classes = useStyles();
 
   return (
@@ -74,16 +74,73 @@ export const TableList = ({ list, setItems, setState, setRcarga }) => {
                 <Estatus estatus={row.rcarga_estatus.estatus} />
               </TableCell>
               <TableCell align="center">
-                <Link
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    fetchRcarga(row.id, setRcarga);
-                    fetchRcargaItem(row.id, setItems, setState);
-                  }}
-                >
-                  <Edit color="action" />
-                </Link>
+                {row.rcarga_estatus.estatus === "ABIERTA" ? (
+                  <Fragment>
+                    <Link
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        fetchRcarga(row.id, setRcarga);
+                        fetchRcargaItem(row.id, setItems, setState);
+                      }}
+                    >
+                      <Edit color="action" />
+                    </Link>
+                  </Fragment>
+                ) : row.rcarga_estatus.estatus === "PREDESPACHO" ? (
+                  <Fragment>
+                    <Link
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        fetchRcarga(row.id, setRcarga);
+                        fetchRcargaItem(row.id, setItems, setState);
+                      }}
+                    >
+                      <Edit color="action" />
+                    </Link>
+                    <Link
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                      }}
+                    >
+                      <PictureAsPdf style={{ color: "#00acee" }} />
+                    </Link>
+                  </Fragment>
+                ) : row.rcarga_estatus.estatus === "DESPACHO" ? (
+                  <Fragment>
+                    <Link
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                      }}
+                    >
+                      <PictureAsPdf style={{ color: "green" }} />
+                    </Link>
+                  </Fragment>
+                ) : (
+                  <Fragment>
+                    <Link
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                      }}
+                    >
+                      <PictureAsPdf style={{ color: "#ffc145" }} />
+                    </Link>
+                    <Link
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        let estatus = 5;
+                        fetchRcargaUpdate2(row.id, estatus, setList);
+                      }}
+                    >
+                      <CheckCircle style={{ color: "red" }} />
+                    </Link>
+                  </Fragment>
+                )}
               </TableCell>
             </TableRow>
           ))}

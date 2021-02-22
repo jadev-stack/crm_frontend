@@ -9,6 +9,7 @@ import {
   Paper,
   Link,
 } from "@material-ui/core";
+import moment from "moment";
 import { Add } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -26,7 +27,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const TableItems = ({ items, setOpen }) => {
+export const TableItems = ({ items, setOpen, setItemsId }) => {
   const classes = useStyles();
 
   return (
@@ -36,9 +37,9 @@ export const TableItems = ({ items, setOpen }) => {
           <TableRow>
             <TableCell align="left"># Factura&nbsp;</TableCell>
             <TableCell align="center">Cliente&nbsp;</TableCell>
+            <TableCell align="center">Documentos&nbsp;</TableCell>
             <TableCell align="center">Tipo Pago&nbsp;</TableCell>
             <TableCell align="center">Pago&nbsp;</TableCell>
-            <TableCell align="center">Retención&nbsp;</TableCell>
             <TableCell align="center">Fecha&nbsp;</TableCell>
             <TableCell align="center">Acción&nbsp;</TableCell>
           </TableRow>
@@ -50,16 +51,19 @@ export const TableItems = ({ items, setOpen }) => {
                 {row.docnum}
               </TableCell>
               <TableCell align="left">{row.cardname}</TableCell>
+              <TableCell align="left">{row.documentos}</TableCell>
               <TableCell align="center">{row.docpago}</TableCell>
-              <TableCell align="center">{row.fechare}</TableCell>
-              <TableCell align="center">{row.rete}</TableCell>
-              <TableCell align="center">{row.rete}</TableCell>
+              <TableCell align="center">{row.pago}</TableCell>
+              <TableCell align="center">
+                {row.fechare ? moment(row.fechare).format("DD/MM/YYYY") : ""}
+              </TableCell>
               <TableCell align="center">
                 <Link
                   href="#"
                   onClick={(e) => {
                     e.preventDefault();
                     setOpen(true);
+                    setItemsId(row.itemsid);
                   }}
                 >
                   <Add color="action" />

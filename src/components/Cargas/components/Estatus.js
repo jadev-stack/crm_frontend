@@ -24,6 +24,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "green",
     borderColor: "green",
   },
+  liquidada: {
+    backgroundColor: "#ffc145",
+    borderColor: "#ffc145",
+  },
   label: {
     color: "white",
   },
@@ -40,7 +44,9 @@ export const Estatus = ({ estatus }) => {
             ? classes.abierto
             : estatus === "PREDESPACHO"
             ? classes.predespacho
-            : classes.despacho
+            : estatus === "DESPACHO"
+            ? classes.despacho
+            : classes.liquidada
         }
         classes={{ label: classes.label }}
       />

@@ -33,3 +33,16 @@ export const fetchRcargaUpdate = async (id, estatus) => {
     method: "PUT",
   });
 };
+
+export const fetchRcargaUpdate2 = async (id, estatus, setList) => {
+  const res = await fetch(`${API}api/rcarga_update/${id}/${estatus}`, {
+    method: "PUT",
+  });
+  if (res.ok === true) {
+    const res2 = await fetch(`${API}api/rcarga/`);
+    const data = await res2.json();
+    if (res2.ok === true) {
+      setList(data);
+    }
+  }
+};

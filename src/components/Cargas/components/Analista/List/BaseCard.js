@@ -66,6 +66,7 @@ export const BaseCard = ({ setState, setItems, setRcarga }) => {
         <CardContent>
           <TableList
             list={list}
+            setList={setList}
             setItems={setItems}
             setState={setState}
             setRcarga={setRcarga}

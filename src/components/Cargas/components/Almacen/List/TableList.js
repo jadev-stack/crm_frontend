@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core";
 
 import moment from "moment";
-import { AssignmentInd, Feedback } from "@material-ui/icons";
+import { AssignmentInd, Feedback, PictureAsPdf } from "@material-ui/icons";
 import { Estatus } from "../../Estatus";
 import { fetchListLiqui } from "../Utils/Liquidacion";
 const useStyles = makeStyles({
@@ -92,7 +92,7 @@ export const TableList = ({ despacho, setOpen, setId, setState, setItems }) => {
                   >
                     <AssignmentInd color="action" />
                   </Link>
-                ) : (
+                ) : row.estatus === "DESPACHO" ? (
                   <Fragment>
                     <Link
                       href="#"
@@ -109,10 +109,23 @@ export const TableList = ({ despacho, setOpen, setId, setState, setItems }) => {
                       onClick={(e) => {
                         e.preventDefault();
                         fetchListLiqui(row.id, setItems);
+                        setId(row.id);
                         setState(2);
                       }}
                     >
                       <Feedback color="action" />
+                    </Link>
+                  </Fragment>
+                ) : (
+                  <Fragment>
+                    <Link
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setId(row.id);
+                      }}
+                    >
+                      <PictureAsPdf color="action" />
                     </Link>
                   </Fragment>
                 )}

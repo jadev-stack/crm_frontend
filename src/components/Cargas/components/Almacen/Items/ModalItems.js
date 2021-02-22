@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import {
   Dialog,
   DialogActions,
@@ -6,13 +7,29 @@ import {
   DialogTitle,
   Button,
 } from "@material-ui/core";
+
 import { TipoPago } from "./TipoPago";
 import { Retencion } from "./Retencion";
+import { FechaRe } from "./FechaRe";
+import { Documentos } from "./Documentos";
+import moment from "moment";
+import { fetchLiquiValues } from "../Utils/Liquidacion";
 
-export const ModalItems = ({ handleClose, open, id }) => {
+export const ModalItems = ({ handleClose, open, id, setItems, itemsid }) => {
   const [tipoPago, setTipoPago] = useState("Credito");
   const [reten, setReten] = useState("Ninguna");
   const [pago, setPago] = useState(0);
+  const [fecha, setFecha] = useState(moment(Date.now()).format("yyyy-MM-DD"));
+  const [documentos, setDocumentos] = useState("Ninguno");
+
+  const cleanerInput = () => {
+    setTipoPago("");
+    setPago(0);
+    setReten("Ninguna");
+    setFecha(moment(Date.now()).format("yyyy-MM-DD"));
+    setDocumentos("Ninguno");
+  };
+
   return (
     <Dialog
       open={open}
@@ -25,6 +42,7 @@ export const ModalItems = ({ handleClose, open, id }) => {
         {"Datos Para Liquidación de Documento"}
       </DialogTitle>
       <DialogContent>
+        <Documentos documentos={documentos} setDocumentos={setDocumentos} />
         <TipoPago
           setTipoPago={setTipoPago}
           tipoPago={tipoPago}
@@ -32,6 +50,7 @@ export const ModalItems = ({ handleClose, open, id }) => {
           setPago={setPago}
         />
         <Retencion reten={reten} setReten={setReten} />
+        <FechaRe fecha={fecha} setFecha={setFecha} />
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} color="primary">
@@ -39,10 +58,19 @@ export const ModalItems = ({ handleClose, open, id }) => {
         </Button>
         <Button
           onClick={() => {
-            console.log(tipoPago, pago, reten);
+            const liqui = {
+              rcarga_id: id,
+              documentos: documentos,
+              docpago: tipoPago,
+              pago: parseFloat(pago),
+              reten: reten,
+              fechare: fecha,
+              rcarga_item_id: itemsid,
+            };
+
+            fetchLiquiValues(liqui, setItems);
+            cleanerInput();
             handleClose();
-            setTipoPago("");
-            setPago(0);
           }}
           color="primary"
           autoFocus

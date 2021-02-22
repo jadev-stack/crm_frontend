@@ -13,10 +13,9 @@ const useStyles = makeStyles({
   },
 });
 
-export const BaseCard = ({ setState, setItems }) => {
+export const BaseCard = ({ setState, setItems, id, setId }) => {
   const classes = useStyles();
   const [despacho, setDespacho] = useState([]);
-  const [id, setId] = useState();
 
   useEffect(() => {
     fetchListDespacho(setDespacho);
